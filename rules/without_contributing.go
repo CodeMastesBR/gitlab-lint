@@ -1,26 +1,26 @@
 package rules
 
-// WithoutContributing checks if the project has a CONTRIBUTING.md file
+// WithoutContributing verifica se o projeto possui um arquivo CONTRIBUTING.md
 type WithoutContributing struct{}
 
-// Run executes the rule check
+// Run executa a verificação da regra
 func (r WithoutContributing) Run(p Project) RuleResult {
-	if p.ContributingFile == "" {
+	if p.ContributingURL == "" {
 		return RuleResult{
 			Failed:  true,
-			Message: "Project does not have a CONTRIBUTING.md file",
+			Message: "Projeto não possui arquivo CONTRIBUTING.md",
 		}
 	}
 
 	return RuleResult{Failed: false}
 }
 
-// GetLevel returns the rule level
+// GetLevel retorna o nível da regra
 func (r WithoutContributing) GetLevel() string {
 	return Warning
 }
 
-// GetTitle returns the rule title
+// GetTitle retorna o título da regra
 func (r WithoutContributing) GetTitle() string {
-	return "Without Contributing Guide"
+	return "Sem Guia de Contribuição"
 }
